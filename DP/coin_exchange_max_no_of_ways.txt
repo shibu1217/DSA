@@ -1,0 +1,78 @@
+//knapsack top down approach
+
+#include <iostream>
+
+using namespace std;
+
+int knapsack(int arr[],int n,int sum)
+{
+ 
+   int t[n+1][sum+1],i,j;
+   t[0][0]=1;
+
+for( i=0;i<=n;i++)
+{
+ 
+   for( j=0;j<=sum;j++)
+  
+  {
+        if(i==0)
+     
+   {
+             t[i][j]=false;
+   
+   
+     }
+     
+     if(j==0)
+     {
+         t[i][j]=true;
+     }
+   
+ }
+}
+
+for(i=1;i<=n;i++)
+{
+  
+  for(j=1;j<=sum;j++)
+    {
+ 
+        if(arr[i-1]<=j)
+        {
+       
+     t[i][j]=t[i][j-arr[i-1]]+t[i-1][j];
+        }
+       
+ else 
+      
+  {
+        
+    t[i][j]=t[i-1][j];
+   
+     }
+           
+
+
+   
+ }
+}
+
+cout<<t[n][sum];
+
+}
+
+
+int main()
+{
+ 
+   int arr[]={1,2,3};
+  int sum=5;
+   
+ int n=sizeof arr/sizeof arr[0];
+ 
+  knapsack(arr,n,sum);
+   
+    return 0;
+
+}
